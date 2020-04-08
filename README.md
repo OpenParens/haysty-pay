@@ -4,9 +4,13 @@ Due to concerns around the coronavirus pandemic the format of our local farmers 
 The goal of this project will be to provide an application that simplifies in person payments to reduce congestion. Each vendor will add the total for a customer to an invoice for that customer. Payment will be taken at the end by a farmers market representative, not an individual vendor. This will reduce the amount of time a customer needs to spend at each vendor. During busy times, more stations could be set up to take multiple payments at the same time. The rate of customers through the vendors will be determined by the slowest vendor at any give point. By allowing multiple customers to pay at the end, each vendor's process is simplified and should allow for faster throughput.
 
 Technical overview:
+
 Vendors will have a login allowing them to create invoices and add/edit totals for their own business to a customer's existing invoice.
+
 Market representatives will have a login allowing them to select a customer's existing invoice, review the vendor's and vendor totals with the customer and accept payment for the total amount.
+
 Payments taken by credit card could be accepted either in app through a provider like Square or Stripe, or outside of the app through a separate provider.
+
 Invoices will need to be able to be marked as paid by cash, market tokens, SNAP, or other payment methods.
 
 Vendors will need to have a portal to review their own totals per market day.
