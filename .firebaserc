@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "haysty-pay-dev"
+  },
+  "targets": {
+    "haysty-pay-dev": {
+      "hosting": {
+        "haysty-pay": [
+          "haysty-pay-dev"
+        ]
+      }
+    }
+  }
+}
