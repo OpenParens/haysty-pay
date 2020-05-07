@@ -1,0 +1,22 @@
+<div *ngIf="auth.user | async as user; else showLogin">
+  <label for="displayname">Display Name: </label>
+  <input id="displayname" [(ngModel)]="displayName" />
+  <br />
+  <button (click)="addUsername()">Add Username</button>
+  <button (click)="logout()">Logout</button>
+</div>
+<ng-template #showLogin>
+  <p>Please login.</p>
+  <label for="displayname">Display Name: </label>
+  <input id="displayname" [(ngModel)]="displayName" />
+  <br />
+  <label for="username">Username: </label>
+  <input id="username" [(ngModel)]="username" />
+  <br />
+  <label for="password">Password</label>
+  <input id="password" type="password" [(ngModel)]="password" />
+  <br />
+  <button (click)="login()">Login</button>
+  <br />
+  <button (click)="signup()">Sign up</button>
+</ng-template>

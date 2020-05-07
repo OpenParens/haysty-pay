@@ -1,14 +1,9 @@
-<div class="content" role="main">
-
-  <input [(ngModel)]="customer.licensePlate" placeholder="License Plate"/>
-  <button (click)="addCustomerClick()">Add Customer</button>
-  <button (click)="getCustomersClick()">Refresh</button>
-  <div class="customer-grid">
-    <div class="card" *ngFor="let customer of customers">
-      {{ customer.licensePlate | uppercase }}
-    </div>
+<app-shell>
+  <div *ngIf="auth.user | async as user">
+    <h1>{{ user.displayName }}</h1>
   </div>
 
-</div>
+  <router-outlet></router-outlet>
 
-<router-outlet></router-outlet>
+</app-shell>
+
