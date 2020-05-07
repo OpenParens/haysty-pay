@@ -1,0 +1,7 @@
+<input [(ngModel)]="customer.identifier" placeholder="License Plate"/>
+<button (click)="addCustomerClick()">Add Customer</button>
+<div class="customer-grid">
+  <div class="card" *ngFor="let customer of customers">
+    {{ customer.identifier | uppercase }}
+  </div>
+</div>

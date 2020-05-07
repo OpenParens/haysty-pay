@@ -1,15 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Customer, customerConverter } from './customer';
-import { RouterLinkActive } from '@angular/router';
-import { environment } from '../environments/environment';
-
-const firebase = require("firebase");
-// Required for side-effects
-require("firebase/firestore");
-
-firebase.initializeApp(environment.firebase);
-
-var db = firebase.firestore();
+import { AngularFireAuth } from '@angular/fire/auth';
+import { User } from './user';
 
 @Component({
   selector: 'app-root',
@@ -19,42 +10,14 @@ var db = firebase.firestore();
 
 export class AppComponent implements OnInit {
   title = 'Haysty Pay';
-  customer: Customer = {
-    licensePlate: ''
+  user: User = {
+    Uid: '',
+    Email: '',
+    Vendor: ''
   };
 
-  customers: Customer[] = [];
+  constructor(public auth: AngularFireAuth) {}
 
   ngOnInit(){
-    this.getCustomers();
-  }
-
-  getCustomers(){
-    db.collection('customers')
-      .withConverter(customerConverter)
-      .orderBy("licensePlate")
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          this.customers.push(doc.data())
-        });
-      });
-  }
-
-  getCustomersClick(){
-    this.getCustomers();
-  }
-
-  addCustomerClick(){
-    db.collection("customers")
-      .add(this.customer)
-      .then(function(docRef) {
-        console.log("Document written with ID: ", docRef.id);
-      })
-      .catch(function(error) {
-        console.error("Error adding document: ", error);
-      });
-
-    this.customer.licensePlate = '';
   }
 }

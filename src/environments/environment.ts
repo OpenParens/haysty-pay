@@ -6,9 +6,14 @@ export const environment = {
   production: false,
 
   firebase: {
-    apiKey: 'AIzaSyCM3qKUXWZE7ik2YWPuDhFHCceOiqNlAv4',
-    authDomain: 'haysty-pay-dev.firebaseapp.com',
-    projectId: 'haysty-pay-dev'
+    apiKey: "AIzaSyCM3qKUXWZE7ik2YWPuDhFHCceOiqNlAv4",
+    authDomain: "haysty-pay-dev.firebaseapp.com",
+    databaseURL: "https://haysty-pay-dev.firebaseio.com",
+    projectId: "haysty-pay-dev",
+    storageBucket: "haysty-pay-dev.appspot.com",
+    messagingSenderId: "883019079602",
+    appId: "1:883019079602:web:4bcd224c87f5d4e1930eab",
+    measurementId: "G-2JPLM4CM23"
   }
 };
 

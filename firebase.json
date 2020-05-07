@@ -38,6 +38,21 @@
           "destination": "/index.html"
         }
       ]
+    },
+    {
+      "target": "haysty-pay",
+      "public": "dist/haysty-pay",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
     }
   ]
 }
