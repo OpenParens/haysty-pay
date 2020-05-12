@@ -6,11 +6,12 @@ import { Customer } from '../customer';
 @Injectable({
   providedIn: 'root'
 })
+
 export class CustomerListService {
   constructor(private auth: AngularFireAuth, private db: AngularFirestore) { }
 
   getCustomers() {
-    return this.db.collection<Customer>('customers').valueChanges();
+    return this.db.collection<Customer>('customers').valueChanges({ idField: 'id' });
   }
 
   async createCustomer(licensePlate: string) {
