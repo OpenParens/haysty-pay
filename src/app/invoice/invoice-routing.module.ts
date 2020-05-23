@@ -6,7 +6,7 @@ import { VendorDetailComponent } from './vendor-detail/vendor-detail.component';
 
 const routes: Routes = [
   { path: 'customers', component: CustomerListComponent },
-  { path: 'vendor-detail', component: VendorDetailComponent }
+  { path: 'customers/vendor-detail/:id', component: VendorDetailComponent }
 ];
 
 @NgModule({

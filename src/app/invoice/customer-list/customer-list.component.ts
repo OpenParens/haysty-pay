@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Customer } from '../customer';
 import { Subscription } from 'rxjs';
 import { CustomerListService } from './customer-list.service';
@@ -9,7 +9,7 @@ import { CustomerListService } from './customer-list.service';
   styleUrls: ['./customer-list.component.scss']
 })
 
-export class CustomerListComponent implements OnInit {
+export class CustomerListComponent implements OnInit, OnDestroy {
   customers: Customer[];
   sub: Subscription;
   customer: Customer = {
@@ -22,6 +22,10 @@ export class CustomerListComponent implements OnInit {
     this.sub = this.customerListService
                   .getCustomers()
                   .subscribe(customers => (this.customers = customers));
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 
   addCustomerClick(){

@@ -1,6 +1,6 @@
 <app-shell>
   <div *ngIf="auth.user | async as user">
-    <h1>{{ user.displayName }}</h1>
+    <h1 style="text-align: center;">{{ user.displayName }}</h1>
   </div>
 
   <router-outlet></router-outlet>

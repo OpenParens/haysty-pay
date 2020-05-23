@@ -2,6 +2,6 @@
 <button (click)="addCustomerClick()">Add Customer</button>
 <div class="customer-grid">
   <div class="card" *ngFor="let customer of customers">
-    {{ customer.identifier | uppercase }}
+    <a style="color: white; text-decoration: none;" routerLink="vendor-detail/{{ customer.id }}">{{ customer.id }} - {{ customer.identifier | uppercase }}</a>
   </div>
 </div>

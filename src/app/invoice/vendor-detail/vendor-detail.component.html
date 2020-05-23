@@ -1,1 +1,7 @@
-<p>vendor-detail works!</p>
+<p>vendor-detail works! - {{ id }}</p>
+<p>Amount: {{ vendorDetail?.amount || 0 | currency }}</p>
+<input [(ngModel)]="amount" placeholder="Amount"/>
+<button (click)="addDetail()">Add Detail</button>
+<br/>
+<p>Total: {{ total | currency }}</p>
+
