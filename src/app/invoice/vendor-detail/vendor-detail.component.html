@@ -1,5 +1,5 @@
 <p>vendor-detail works! - {{ id }}</p>
-<p>Amount: {{ vendorDetail?.amount | currency }}</p>
+<p>Amount: {{ vendorDetail?.amount || 0 | currency }}</p>
 <input [(ngModel)]="amount" placeholder="Amount"/>
 <button (click)="addDetail()">Add Detail</button>
 <br/>
