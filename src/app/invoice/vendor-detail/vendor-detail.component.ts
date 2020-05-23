@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { VendorDetail } from './vendorDetail';
@@ -10,12 +10,13 @@ import { AngularFireAuth } from '@angular/fire/auth';
   templateUrl: './vendor-detail.component.html',
   styleUrls: ['./vendor-detail.component.scss']
 })
-export class VendorDetailComponent implements OnInit {
+export class VendorDetailComponent implements OnInit, OnDestroy {
   id: string;
-  vendorDetail: VendorDetail[];
+  vendorDetail: VendorDetail;
   sub: Subscription;
-  amount: number;
-  authy: any;
+  sub2: Subscription;
+  amount: string;
+  total: number;
 
   constructor(public vendorDetailService: VendorDetailService, private route: ActivatedRoute, private auth: AngularFireAuth) {}
 
@@ -23,11 +24,22 @@ export class VendorDetailComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('id');
 
     this.sub = this.vendorDetailService
-                  .getAmount(this.id)
-                  .subscribe(vendorDetails => (this.vendorDetail = vendorDetails));
+      .getAmount(this.id)
+      .subscribe(vendorDetail => (this.vendorDetail = vendorDetail));
+
+    this.sub2 = this.vendorDetailService
+      .getTotal(this.id)
+      .subscribe(subTotals => (this.total = subTotals.map(s => s.amount).reduce((acc, val) => acc + val)));
   }
 
-  // orderDetailsByTimestamp(a: VendorDetail, b, ){
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
+    this.sub2.unsubscribe();
+  }
 
+  addDetail(){
+    this.vendorDetailService.addAmount(+this.amount, this.id);
+
+    this.amount = '';
   }
 }

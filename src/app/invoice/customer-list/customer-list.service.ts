@@ -16,9 +16,13 @@ export class CustomerListService {
 
   async createCustomer(licensePlate: string) {
     const user = await this.auth.currentUser;
-    return this.db.collection('customers').add({
+
+    let refId = await this.db.collection('customers').add({
       identifier: licensePlate,
       uid: user.uid
     });
+
+    // hack to initialize sub collection
+    refId.collection('/vendor-details/').add({amount: 0});
   }
 }

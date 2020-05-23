@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { switchMap, map } from 'rxjs/operators';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { switchMap } from 'rxjs/operators';
 import { VendorDetail } from './vendorDetail';
+import * as firebase from 'firebase/app';
+import { Subtotal } from './subtotal';
 import { Customer } from '../customer';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,29 +14,32 @@ import { Observable } from 'rxjs';
 export class VendorDetailService {
   constructor(private auth: AngularFireAuth, private db: AngularFirestore) { }
 
-  customer: AngularFirestoreDocument<Customer>;
-
   getAmount(customerId: string) {
     return this.auth.authState.pipe(
       switchMap(user => {
         if (user) {
-          return this.db.collection<VendorDetail>('/customers/' + customerId + '/vendor-details', ref =>
-            ref.where('vendorId', '==', user.uid))
+          return this.db.doc<VendorDetail>('/customers/' + customerId + '/vendor-details/' + user.uid)
             .valueChanges();
         }
       })
     );
   }
 
-  // addAmount(amount: string, customerId: string) {
-  //   let vendorDetail: Observable<VendorDetail>;
+  getCustomer(customerId: string) {
+    return this.db.doc<Customer>('/customers/' + customerId).valueChanges();
+  }
 
-  //   this.auth.authState.pipe(
-  //     switchMap(user => {
-  //       if (user) {
-  //         vendorDetail = this.db.doc<VendorDetail>('/customers/' + customerId + '/vendor-details/' + user.uid).valueChanges();
-  //       }
-  //     })
-  //   );
-  // }
+  getTotal(customerId: string) {
+    return this.db.collection<Subtotal>('/customers/' + customerId + '/vendor-details')
+      .valueChanges();
+  }
+
+  async addAmount(amount: number, customerId: string) {
+    const user = await this.auth.currentUser;
+
+    this.db.doc('/customers/' + customerId + '/vendor-details/' + user.uid).set({
+      amount: amount,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    });
+  }
 }

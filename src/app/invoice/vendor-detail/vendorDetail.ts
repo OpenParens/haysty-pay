@@ -1,5 +1,7 @@
+import * as firebase from 'firebase/app';
+
 export interface VendorDetail {
-  vendorId: string;
-  amount?: number;
-  timestamp?: Date;
+  vendorId?: string;
+  amount?: string;
+  timestamp?: firebase.firestore.Timestamp;
 }

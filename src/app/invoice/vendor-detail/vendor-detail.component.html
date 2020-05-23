@@ -1,5 +1,7 @@
 <p>vendor-detail works! - {{ id }}</p>
-<p>Amount: {{ vendorDetail.sort((a, b) => a.timestamp - b.timestamp).amount }}</p>
+<p>Amount: {{ vendorDetail?.amount | currency }}</p>
 <input [(ngModel)]="amount" placeholder="Amount"/>
-<button (click)="addCustomerClick()">Add Amount</button>
+<button (click)="addDetail()">Add Detail</button>
+<br/>
+<p>Total: {{ total | currency }}</p>
 
