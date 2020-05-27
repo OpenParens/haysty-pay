@@ -2,6 +2,7 @@
 <p>Amount: {{ vendorDetail?.amount || 0 | currency }}</p>
 <input [(ngModel)]="amount" placeholder="Amount"/>
 <button (click)="addDetail()">Add Detail</button>
+<a routerLink="/invoice/checkout/{{ id }}">Checkout</a>
 <br/>
 <p>Total: {{ total | currency }}</p>
 

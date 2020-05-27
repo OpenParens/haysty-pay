@@ -20,8 +20,8 @@ export class CustomerListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.sub = this.customerListService
-                  .getCustomers()
-                  .subscribe(customers => (this.customers = customers));
+      .getCustomers()
+      .subscribe(customers => (this.customers = customers));
   }
 
   ngOnDestroy(): void {

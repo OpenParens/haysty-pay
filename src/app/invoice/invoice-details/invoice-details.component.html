@@ -1,0 +1,7 @@
+<p>vendor-detail works! - {{ id }}</p>
+<p *ngFor="let detail of vendorDetails; index as i">
+  <ng-container *ngIf="detail.amount > 0">
+    Vendor {{ i }}: {{ detail.amount | currency }}
+  </ng-container>
+</p>
+<p>Total: {{ total | currency }}</p>
