@@ -6,6 +6,7 @@ import { VendorDetail } from './vendorDetail';
 import * as firebase from 'firebase/app';
 import { Subtotal } from './subtotal';
 import { Customer } from '../customer';
+import { observable, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,9 @@ export class VendorDetailService {
         if (user) {
           return this.db.doc<VendorDetail>('/customers/' + customerId + '/vendor-details/' + user.uid)
             .valueChanges();
+        }
+        else {
+          return new Observable<VendorDetail>();
         }
       })
     );
@@ -38,6 +42,7 @@ export class VendorDetailService {
     const user = await this.auth.currentUser;
 
     this.db.doc('/customers/' + customerId + '/vendor-details/' + user.uid).set({
+      vendor: user.displayName,
       amount: amount,
       timestamp: firebase.firestore.FieldValue.serverTimestamp()
     });

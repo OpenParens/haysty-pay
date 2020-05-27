@@ -18,7 +18,7 @@ export class VendorDetailComponent implements OnInit, OnDestroy {
   amount: string;
   total: number;
 
-  constructor(public vendorDetailService: VendorDetailService, private route: ActivatedRoute, private auth: AngularFireAuth) {}
+  constructor(public vendorDetailService: VendorDetailService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');

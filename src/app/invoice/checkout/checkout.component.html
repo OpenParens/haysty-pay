@@ -1,0 +1,13 @@
+<p *ngFor="let detail of vendorDetails$ | async">
+    <ng-container *ngIf="detail.amount > 0">
+    {{ detail.vendor }}: {{ detail.amount | currency }}
+  </ng-container>
+</p>
+<p>Total: {{ total | currency }}</p>
+<input [(ngModel)]="paymentAmount" placeholder=""/>
+<select >
+  <option>Cash</option>
+  <option>Credit Card</option>
+  <option>EBT</option>
+</select>
+<button (click)="checkoutInvoice()">Complete</button>
