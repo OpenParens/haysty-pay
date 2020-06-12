@@ -1,0 +1,6 @@
+<!-- <p *ngFor="let vendorTotal of vendorTotals">{{ vendorTotal.vendorName }} - {{ vendorTotal.total | currency }}</p>
+<p>{{ vendorTotals.length }}</p> -->
+<p *ngFor="let vendorDetail of vendorDetails">{{ vendorDetail.vendorId }}: {{ vendorDetail.vendor }} - {{ vendorDetail.amount | currency }}</p>
+<p>{{ vendorDetails.length }}</p>
+<!-- <p *ngFor="let customer of customers">{{ customer.identifier }} - {{ customer.id }}</p>
+<p>{{ customers.length }}</p> -->
